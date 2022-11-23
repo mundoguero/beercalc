@@ -8,35 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State var addingNewItem = false
+    @State private var isPresented: Bool = false
+    @State private var isButtonPressed: Bool = false
     
     var body: some View {
-        
-        VStack {
-            NavigationView {
-                Button {
-                    addingNewItem = true
-                } label: {
-                        VStack {
-                            Text("Tap me!")
-                                .font(.title)
-                                .foregroundColor(.primary)
-                            Image("beer")
-                                .resizable()
-                                .interpolation(.medium)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 250, height: 250, alignment: .topLeading)
-                                .border(.blue)
-                                .clipped()
-                                
-                        }
-                        .navigationTitle("The best prize!")
-                    }
-                .sheet(isPresented: $addingNewItem, content: NewItem.init)
+        NavigationView {
+            VStack {
+                NavigationLink(destination: PushedView(), isActive: $isButtonPressed) {
+                    EmptyView()
+                }.hidden()
+                
+                Button(action: {
+                    self.isPresented = true
+                }, label: {
+                    Text("Present Modal")
+                })
+                
+                .sheet(isPresented: $isPresented, onDismiss: {
+                    self.isPresented = false
+                }) {
+                    ModalView(isButtonPressed: self.$isButtonPressed)
+                }
             }
         }
-        .padding()
     }
 }
 
