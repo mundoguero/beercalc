@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ResultView: View {
+struct PushedView: View {
     var body: some View {
         NavigationView {
             VStack {
@@ -15,12 +15,6 @@ struct ResultView: View {
                 Spacer()
             }
         }
-        .navigationTitle("Pushed View")
-    }
-}
-
-struct ResultView_Previews: PreviewProvider {
-    static var previews: some View {
-        ResultView()
+        .navigationBarTitle("Pushed View")
     }
 }

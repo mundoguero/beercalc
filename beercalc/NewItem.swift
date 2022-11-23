@@ -7,24 +7,30 @@
 
 import SwiftUI
 
-
-
-struct NewItem: View {
+struct ModalView: View {
+    @Environment(\.presentationMode) private var presentationMode
+    @Binding private var isButtonPressed: Bool
     
-    @Environment(\.presentationMode) var presentationMode
-    
-    var body: some View {
-        Button("Dismiss Me") {
-            presentationMode.wrappedValue.dismiss()
-        }
+    init(isButtonPressed: Binding<Bool>) {
+        _isButtonPressed = isButtonPressed
     }
-}
-
-
-
-struct NewItem_Previews: PreviewProvider {
-    static var previews: some View {
-        NewItem()
-            .previewedInAllColorSchemes
+    var body: some View {
+        NavigationView {
+            VStack {
+                Button(action: {
+                    self.isButtonPressed = true
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Dismiss and push")
+                })
+                
+                Button(action: {
+                    //self.isButtonPressed = true
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Dismiss")
+                })
+            }
+        }
     }
 }
