@@ -12,9 +12,16 @@ struct PushedView: View {
         NavigationView {
             VStack {
                 Text("Yeah!!!")
-                Spacer()
             }
         }
         .navigationBarTitle("Pushed View")
     }
 }
+
+struct PushedView_Previews: PreviewProvider {
+    static var previews: some View {
+        PushedView()
+            .previewedInAllColorSchemes
+    }
+}
+

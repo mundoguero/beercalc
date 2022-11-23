@@ -21,9 +21,22 @@ struct ContentView: View {
                 Button(action: {
                     self.isPresented = true
                 }, label: {
-                    Text("Present Modal")
+                    VStack {
+                        Text("Tap me!")
+                            .font(.title)
+                            .foregroundColor(.primary)
+                            .padding()
+                        Image("beer")
+                            .resizable()
+                            .interpolation(.medium)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 250, height: 250, alignment: .topLeading)
+                            .border(.blue)
+                            .clipped()
+                            .padding(-10)
+                    }
                 })
-                
+                .navigationTitle("The best prize!")
                 .sheet(isPresented: $isPresented, onDismiss: {
                     self.isPresented = false
                 }) {
